@@ -1,0 +1,40 @@
+const express = require("express");
+const exphs = require("express-handlebars");
+const session = require("express-session");
+const path = require("path");
+const sequelize = require("./config/connect.js");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+// const helpers = require("./utils/helpers");
+// const controllers = require("./controllers");
+// const middleware = require("./middlewares");
+
+const app = express();
+const PORT = process.env.PORT || 8000;
+const hbs = exphs.create({});
+
+const sess = {
+    secret: "The secret passage of animes and movies",
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
+
+app.use(session(sess));
+
+// Handlebars engine
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+// Express middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use(controllers);
+
+sequelize.sync({ force: false }).then(() => {
+    http.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
+})
