@@ -4,13 +4,13 @@ const session = require("express-session");
 const path = require("path");
 const sequelize = require("./config/connect.js");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-// const helpers = require("./utils/helpers");
-// const controllers = require("./controllers");
+const helpers = require("./utils/helpers");
+const controllers = require("./controllers");
 // const middleware = require("./middlewares");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-const hbs = exphs.create({});
+const hbs = exphs.create({ helpers });
 
 const sess = {
     secret: "The secret passage of animes and movies",
