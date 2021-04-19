@@ -14,9 +14,10 @@
 <body>
     <nav>
         <a href="/">Home</a>
-        <i class="fas fa-bars"></i>
+        <i id="navOpen" class="fas fa-bars"></i>
     </nav>
-    <div class="nav-page custom-flex flex-align">
+    <div class="nav-page custom-flex flex-align hidden">
+        <p id="navClose">X</p>
         <ul>
             {{#if loggedIn}}
             <a href="#">
@@ -35,6 +36,8 @@
         </ul>
     </div>
     {{{body}}}
+
+    <script src="/JS/index.js"></script>
 </body>
 
 </html>
