@@ -2,8 +2,8 @@ const express = require("express");
 const exphs = require("express-handlebars");
 const session = require("express-session");
 const path = require("path");
-const sequelize = require("./config/connect.js");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const mongoose = require("mongoose");
+const MongoStore = require('connect-mongo');
 const helpers = require("./utils/helpers");
 const controllers = require("./controllers");
 // const middleware = require("./middlewares");
@@ -12,13 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const hbs = exphs.create({ helpers });
 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/AniMovesDB", { useNewUrlParser: true });
+
 const sess = {
     secret: "The secret passage of animes and movies",
-    cookie: {},
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
     resave: false,
     saveUninitialized: true,
-    store: new SequelizeStore({
-        db: sequelize
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/AniMovesDB',
+        ttl: 24 * 60 * 60, // = 1 days. Default
+        autoRemove: 'native'
     })
 };
 
@@ -35,6 +39,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(controllers);
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
-})
+app.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
