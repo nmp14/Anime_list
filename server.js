@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const hbs = exphs.create({ helpers });
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/AniMovesDB", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/AniMovesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const sess = {
     secret: "The secret passage of animes and movies",
