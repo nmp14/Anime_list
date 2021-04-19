@@ -6,11 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime/Movies</title>
+    <script src="https://kit.fontawesome.com/d81acf0f70.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/CSS/style.css">
     {{{_sections.head}}}
 </head>
 
 <body>
+    <nav>
+        <a href="/">Home</a>
+        <i class="fas fa-bars"></i>
+    </nav>
+    <div class="nav-page custom-flex flex-align">
+        <ul>
+            {{#if loggedIn}}
+            <a href="#">
+                <li>Home</li>
+            </a>
+            {{else}}
+            <a href="/">
+                <li>Home</li>
+            </a>
+            {{/if}}
+            {{#if loggedIn}}
+            <li>Logout</li>
+            {{else}}
+            <li>Login / Register</li>
+            {{/if}}
+        </ul>
+    </div>
     {{{body}}}
 </body>
 
