@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+/* nav elements */
+nav {position: relative;}
+nav a, nav i {
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+nav a {
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+}
+nav i {
+    top: 20px;
+    right: 20px;
+}
+
+.nav-page {
+    background: #555;
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+}
+.nav-page ul {
+    list-style: none;
+}
+.nav-page a {
+    color: #fff;
+    text-decoration: none;
+}
+/* End nav elements. */
+/* Helpers */
+.custom-flex {
+    display: flex;
+    justify-content: center;
+}
+.flex-align {align-items: center;}
+.hidden {display: none;}
+/* End helpers */
