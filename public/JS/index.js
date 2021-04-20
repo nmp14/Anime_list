@@ -9,6 +9,7 @@ const loginBtn = document.getElementById("loginSubmit");
 const registerBtn = document.getElementById("registerSubmit");
 const registerError = document.getElementById("registerError");
 const logoutBtn = document.getElementById("logoutBtn");
+const loginError = document.getElementById("loginError");
 
 // Nav page functions 
 const openNav = (e) => {
@@ -60,12 +61,14 @@ const loginUser = async (e) => {
                 headers: { "Content-Type": "application/json" }
             });
             if (fetchResponse.ok) {
-                console.log("ok")
+                document.location.replace("/");
             } else {
-                console.log("no");
+                loginError.innerHTML = "Invalid username or password";
+                loginError.classList.remove("hidden");
             }
         } else {
-            document.getElementById("loginError").classList.remove("hidden");
+            loginError.innerHTML = "Please fill out fields";
+            loginError.classList.remove("hidden");
         }
     } catch (e) {
         console.log(e);
