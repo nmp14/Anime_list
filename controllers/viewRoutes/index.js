@@ -5,7 +5,18 @@ router.get("/", (req, res) => {
     try {
         res.render("home", {
             loggedIn: req.session.loggedIn
-        })
+        });
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
+// Login Page
+router.get("/login", (req, res) => {
+    try {
+        res.render("login", {
+            loggedIn: req.session.loggedIn
+        });
     } catch (e) {
         res.status(500).json(e);
     }
