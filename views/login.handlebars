@@ -1,3 +1,62 @@
-<main class="login-page">
+<main class="login-page custom-flex flex-align">
+    <form id="loginForm" class="custom-flex">
+        <div>
+            <h2 class="mb-3">Login</h2>
+            <div class="mb-3">
+                <label for="emailLogin" class="formLabel">Enter Email</label>
+                <input type="email" id="emailLogin" class="formInput" placeholder="example@mail.com">
+            </div>
+            <div class="mb-3">
+                <label for="passwordLogin" class="formLabel">Enter Password</label>
+                <input type="password" id="passwordLogin" class="formInput" placeholder="Password">
+            </div>
+            <div class="mb-3">
+                <button id="loginSubmit" class="submit-button">Submit</button>
+            </div>
 
+            <div>
+                <p class="mb-3">Not registed? Register here: <button id="swapToRegister"
+                        class="submit-button">Register</button></p>
+            </div>
+        </div>
+    </form>
+
+    <form id="registerForm" class="custom-flex hidden">
+        <div>
+            <h2 class="mb-3">Register</h2>
+            <div class="mb-3">
+                <label for="firstNameRegister" class="formLabel">Enter First Name</label>
+                <input type="text" id="firstNameRegister" class="formInput" placeholder="John">
+            </div>
+            <div class="mb-3">
+                <label for="lastNameRegister" class="formLabel">Enter Last Name</label>
+                <input type="text" id="lastNameRegister" class="formInput" placeholder="Doe">
+            </div>
+            <div class="mb-3">
+                <label for="usernameRegister" class="formLabel">Enter Username (min 4 chars)</label>
+                <input type="text" id="usernameRegister" class="formInput" placeholder="ExampleUsername">
+            </div>
+            <div class="mb-3">
+                <label for="emailRegister" class="formLabel">Enter Email</label>
+                <input type="email" id="emailRegister" class="formInput" placeholder="example@mail.com">
+            </div>
+            <div class="mb-3">
+                <label for="passwordRegister" class="formLabel">Enter Password (min 6 chars)</label>
+                <input type="password" id="passwordRegister" class="formInput" placeholder="Password">
+            </div>
+            <div class="mb-3">
+                <label for="ConfirmPassword" class="formLabel">Confirm Password</label>
+                <input type="password" id="ConfirmPassword" class="formInput" placeholder="Password">
+            </div>
+            <div class="mb-3">
+                <button id="registerSubmit" class="submit-button">Submit</button>
+            </div>
+            <p id="registerError" class="mb-3 red hidden">Error</p>
+
+            <div>
+                <p class="mb-3">Already registed? Login here: <button id="swapToLogin"
+                        class="submit-button">Login</button></p>
+            </div>
+        </div>
+    </form>
 </main>
