@@ -7,6 +7,7 @@ const swapToRegister = document.getElementById("swapToRegister");
 const swapToLogin = document.getElementById("swapToLogin");
 const loginBtn = document.getElementById("loginSubmit");
 const registerBtn = document.getElementById("registerSubmit");
+const registerError = document.getElementById("registerError");
 
 // Nav page functions 
 const openNav = (e) => {
@@ -71,6 +72,42 @@ const loginUser = async (e) => {
 }
 // Register fetch request
 const registerUser = async (e) => {
+    e.preventDefault();
+
+    const first_name = document.getElementById("firstNameRegister").value.trim();
+    const last_name = document.getElementById("lastNameRegister").value.trim();
+    const username = document.getElementById("usernameRegister").value.trim();
+    const email = document.getElementById("emailRegister").value.trim();
+    const password = document.getElementById("passwordRegister").value.trim();
+    const confirmPassword = document.getElementById("ConfirmPassword").value.trim();
+
+    // If passwords dont match, return with error
+    if (password !== confirmPassword) {
+        registerError.innerHTML = "Passwords do not match";
+        if (registerError.classList.contains("hidden")) registerError.classList.remove("hidden");
+        return;
+    }
+    // Require inputs
+    if (first_name && last_name && username && email && password && confirmPassword) {
+        const registerFetch = await fetch("/api/users/", {
+            method: "POST",
+            body: JSON.stringify({ first_name, last_name, email, username, password }),
+            headers: { "Content-Type": "application/json" }
+        });
+
+        const responseJSON = await registerFetch.json();
+
+        if (registerFetch.ok) {
+            document.location.replace("/");
+        } else {
+            registerError.innerHTML = responseJSON.message;
+            if (registerError.classList.contains("hidden")) registerError.classList.remove("hidden");
+        }
+    } else {
+        registerError.innerHTML = "Please fill out all required fields";
+        if (registerError.classList.contains("hidden")) registerError.classList.remove("hidden");
+        return;
+    }
 
 }
 
