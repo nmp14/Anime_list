@@ -61,7 +61,7 @@ const loginUser = async (e) => {
                 headers: { "Content-Type": "application/json" }
             });
             if (fetchResponse.ok) {
-                document.location.replace("/");
+                document.location.replace("/members");
             } else {
                 loginError.innerHTML = "Invalid username or password";
                 loginError.classList.remove("hidden");
@@ -102,7 +102,7 @@ const registerUser = async (e) => {
         const responseJSON = await registerFetch.json();
 
         if (registerFetch.ok) {
-            document.location.replace("/");
+            document.location.replace("/members");
         } else {
             registerError.innerHTML = responseJSON.message;
             if (registerError.classList.contains("hidden")) registerError.classList.remove("hidden");
