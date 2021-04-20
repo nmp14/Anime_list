@@ -8,6 +8,7 @@ const swapToLogin = document.getElementById("swapToLogin");
 const loginBtn = document.getElementById("loginSubmit");
 const registerBtn = document.getElementById("registerSubmit");
 const registerError = document.getElementById("registerError");
+const logoutBtn = document.getElementById("logoutBtn");
 
 // Nav page functions 
 const openNav = (e) => {
@@ -110,9 +111,24 @@ const registerUser = async (e) => {
     }
 
 }
+// Log user out
+const logout = async (e) => {
+    e.preventDefault();
+
+    const logoutResponse = await fetch("/api/users/logout", {
+        method: "POST"
+    });
+
+    if (logoutResponse.ok) {
+        document.location.replace("/");
+    } else {
+        console.log("err");
+    }
+}
 
 if (navOpen) navOpen.addEventListener("click", openNav);
 if (navClose) navClose.addEventListener("click", closeNav);
 if (swapToLogin || swapToRegister) swapForms();
 if (loginBtn) loginBtn.addEventListener("click", loginUser);
 if (registerBtn) registerBtn.addEventListener("click", registerUser);
+if (logoutBtn) logoutBtn.addEventListener("click", logout);
