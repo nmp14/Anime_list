@@ -1,5 +1,6 @@
 const Mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const Schema = Mongoose.Schema;
 
@@ -69,6 +70,7 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
     });
 };
 
+UserSchema.plugin(uniqueValidator);
 
 const User = Mongoose.model("User", UserSchema);
 
