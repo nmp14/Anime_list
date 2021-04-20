@@ -121,6 +121,7 @@ form h2 {
     background: rgb(0, 81, 255);
     border: none;
     color: #fff;
+    cursor: pointer;
 }
 .red {color: crimson}
 
