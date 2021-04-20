@@ -16,6 +16,9 @@ router.post("/", async (req, res) => {
             if (err) {
                 res.status(400).json(err);
             } else {
+                req.session.user_id = user._id;
+                req.session.loggedIn = true;
+                req.session.save();
                 res.status(201).json(doc);
             }
         });
