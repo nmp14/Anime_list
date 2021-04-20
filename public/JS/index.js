@@ -5,6 +5,8 @@ const navClose = document.getElementById("navClose");
 // loginPage elements
 const swapToRegister = document.getElementById("swapToRegister");
 const swapToLogin = document.getElementById("swapToLogin");
+const loginBtn = document.getElementById("loginSubmit");
+const registerBtn = document.getElementById("registerSubmit");
 
 // Nav page functions 
 const openNav = (e) => {
@@ -39,9 +41,41 @@ const swapForms = () => {
             document.getElementById("registerForm").classList.add("hidden");
         });
     }
-    swapForms();
+}
+
+// Login fetch request
+const loginUser = async (e) => {
+    try {
+        e.preventDefault();
+
+        const email = document.getElementById("emailLogin").value.trim();
+        const password = document.getElementById("passwordLogin").value.trim();
+
+        if (email && password) {
+            const fetchResponse = await fetch("/api/users/login", {
+                method: "POST",
+                body: JSON.stringify({ email, password }),
+                headers: { "Content-Type": "application/json" }
+            });
+            if (fetchResponse.ok) {
+                console.log("ok")
+            } else {
+                console.log("no");
+            }
+        } else {
+            document.getElementById("loginError").classList.remove("hidden");
+        }
+    } catch (e) {
+        console.log(e);
+    }
+}
+// Register fetch request
+const registerUser = async (e) => {
+
 }
 
 if (navOpen) navOpen.addEventListener("click", openNav);
 if (navClose) navClose.addEventListener("click", closeNav);
 if (swapToLogin || swapToRegister) swapForms();
+if (loginBtn) loginBtn.addEventListener("click", loginUser);
+if (registerBtn) registerBtn.addEventListener("click", registerUser);
