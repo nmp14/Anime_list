@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const authCheck = require("../../middlewares");
+const db = require("../../models");
 
 // Get home page
 router.get("/", (req, res) => {
@@ -23,9 +25,12 @@ router.get("/login", (req, res) => {
 });
 
 // Member landing page
-router.get("/members", (req, res) => {
+router.get("/members", authCheck, async (req, res) => {
     try {
+        const user = await (await db.User.findOne({ _id: req.session.user_id }, 'username anime movies')).populate("anime").populate("movies");
+
         res.render("members", {
+            user,
             loggedIn: req.session.loggedIn
         })
     } catch (e) {
