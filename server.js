@@ -23,7 +23,8 @@ const sess = {
         mongoUrl: 'mongodb://localhost/AniMovesDB',
         ttl: 24 * 60 * 60, // = 1 days. Default
         autoRemove: 'native'
-    })
+    }),
+    unset: 'destroy'
 };
 
 app.use(session(sess));
