@@ -1,4 +1,6 @@
 module.exports = {
     User: require("./Users"),
-    Season: require("./Seasons")
+    Season: require("./Seasons"),
+    Anime: require("./Animes"),
+    Movie: require("./Movies")
 }
