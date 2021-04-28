@@ -4,7 +4,7 @@
 
 ## Table of Contents
 1. [Description](#description)
-
+2. [Tech](#tech)
 3. [Questions](#questions)
 
 ## Description
