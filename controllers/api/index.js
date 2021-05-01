@@ -5,6 +5,6 @@ const seasonRoutes = require("./seasonRoutes");
 
 router.use("/users", userRoutes);
 router.use("/anime", animeRoutes);
-router.use("/season", seasonRoutes);
+router.use("/seasons", seasonRoutes);
 
 module.exports = router;

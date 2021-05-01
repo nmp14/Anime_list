@@ -17,4 +17,22 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    try {
+        const season = db.Season.create({
+            season: req.body.season,
+            year: req.body.year
+        }, (err, doc) => {
+            if (err) {
+                res.status(400).json({ message: err });
+                return;
+            }
+            res.status(201).json(doc);
+        });
+    } catch (e) {
+        res.status(500).json(e);
+        console.log(e);
+    }
+})
+
 module.exports = router;

@@ -15,7 +15,7 @@ const SeasonSchema = new Schema({
         }, "Not a valid season"]
     },
     year: {
-        type: Date,
+        type: String,
         required: "Year is required",
         validate: [({ length }) => length === 4, "Must be length of 4 for year"],
     },
