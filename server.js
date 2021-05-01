@@ -4,13 +4,20 @@ const session = require("express-session");
 const path = require("path");
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo');
+const logger = require("morgan");
 const helpers = require("./utils/helpers");
 const controllers = require("./controllers");
 // const middleware = require("./middlewares");
 
+// Scraping tools
+var axios = require("axios");
+var cheerio = require("cheerio");
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 const hbs = exphs.create({ helpers });
+// Use morgan logger for logging requests
+app.use(logger("dev"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/AniMovesDB", { useNewUrlParser: true, useUnifiedTopology: true });
 
