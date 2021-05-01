@@ -7,7 +7,7 @@ const SeasonSchema = new Schema({
         type: String,
         required: "Season is required",
         validate: [(inputSeason) => {
-            const seasons = ["Spring", "Summer", "Fall", "winter"];
+            const seasons = ["Spring", "Summer", "Fall", "Winter"];
             for (const season of seasons) {
                 if (season === inputSeason) return true;
             }
