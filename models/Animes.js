@@ -11,6 +11,10 @@ const AnimeSchema = new Schema({
         type: String
     },
     description: {
+        type: String,
+        required: "Must have a description"
+    },
+    img: {
         type: String
     }
 });
