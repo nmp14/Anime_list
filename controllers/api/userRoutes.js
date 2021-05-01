@@ -1,6 +1,29 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+// Get user with anime (and movies later)
+router.get("/:id", async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.params.id }).populate("anime");
+
+        res.status(200).json(user);
+    } catch (e) {
+        res.status(500).json(e);
+        console.log(e);
+    }
+});
+// Get all users
+router.get("/", async (req, res) => {
+    try {
+        const users = await User.find({});
+
+        res.status(200).json(users);
+    } catch (e) {
+        res.status(500).json(e);
+        console.log(e);
+    }
+})
+
 // Create user
 router.post("/", async (req, res) => {
     try {
@@ -69,6 +92,39 @@ router.post("/logout", async (req, res) => {
         } else {
             res.status(404).end();
         }
+    } catch (e) {
+        res.status(500).json(e);
+        console.log(e);
+    }
+});
+// Add anime to user
+router.put("/addAnime", async (req, res) => {
+    try {
+        let user;
+        if (!(await User.findOne({ _id: req.session.user_id, anime: req.body.anime_id }))) {
+            user = await User.updateOne({ _id: req.session.user_id }, {
+                $push: { anime: req.body.anime_id }
+            });
+        }
+        else {
+            res.status(400).json({ message: "Already have anime listed" });
+            return;
+        }
+
+        res.status(200).json(user);
+    } catch (e) {
+        res.status(500).json(e);
+        console.log(e);
+    }
+});
+// Remove anime from user
+router.put("/removeAnime", async (req, res) => {
+    try {
+        const user = await User.updateOne({ _id: req.session.user_id }, {
+            $pull: { anime: req.body.anime_id }
+        });
+
+        res.status(200).json(user);
     } catch (e) {
         res.status(500).json(e);
         console.log(e);
